@@ -1,0 +1,95 @@
+import React from "react";
+import { Box, Link } from "@mui/material";
+import { Scene } from "../components/Scene";
+import {
+  Instagram,
+  Email,
+  Apple,
+  MusicNote,
+  YouTube,
+  People,
+  LocalParking
+} from "@mui/icons-material";
+
+const LINKS = [
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/aprilclucks/",
+    icon: <Instagram />,
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/@aprilclucks",
+    icon: <YouTube />,
+  },
+  {
+    name: "Patreon",
+    href: "https://www.patreon.com/videocameras",
+    icon: <LocalParking />,
+  },
+  {
+    name: "Discord",
+    href: "https://discord.com/invite/5te896KGFa",
+    icon: <People />,
+  },
+  {
+    name: "Email",
+    href: "mailto:ezyvidya@gmail.com",
+    icon: <Email />,
+  },
+];
+export const HomePage = () => {
+  const width = window.innerWidth;
+  return (
+    <>
+      <Box
+        height="100vh"
+        width="100vw"
+        position="relative"
+        display="flex"
+        alignItems="end"
+        justifyContent="center"
+        padding={{ b: 3 }}
+        backgroundImage={"/assets/bliss.jpg"}
+        backgroundSize="cover"
+        backgroundPosition="center"
+      >
+        <Box zIndex={1} position="absolute" height="100vh" width="100%">
+          <Scene />
+        </Box>
+        <Box zIndex={3} display="inline-flex" sx={{ mb: 3 }}>
+          {LINKS.map((link, index) => (
+            <Box display="inline-flex" key={link.name}>
+              <Box
+                display="inline-flex"
+                gap={1}
+                onClick={() => (window.location.href = link.href)}
+              >
+                {link.icon}
+
+                {width > 800 && (
+                  <Link
+                    color="#fff"
+                    key={link.name}
+                    href={link.href}
+                    underline="hover"
+                    sx={{ display: "block" }}
+                  >
+                    {link.name}
+                  </Link>
+                )}
+              </Box>
+
+              {index < LINKS.length - 1 && (
+                <Box
+                  height="100%"
+                  sx={{ width: "2px", mx: 3, bgcolor: "#fff" }}
+                />
+              )}
+            </Box>
+          ))}
+        </Box>
+      </Box>
+    </>
+  );
+};
