@@ -86,10 +86,8 @@ export const MattyText = () => {
   useFrame((state, delta) => {
     const t = state.clock.getElapsedTime();
     if (!textRef.current) return;
-    textRef.current.position.y =
-      textRef.current.position.y + Math.sin((t * 2)) * 0.005;
-    textRef.current.rotation.z =
-      textRef.current.rotation.z + Math.sin((t * 3)) * 0.001;
+    textRef.current.position.y = -0.5 + Math.sin(t * 2) * 0.05;
+    textRef.current.rotation.z = Math.PI + Math.sin(t * 3) * 0.05;
   });
 
   return (
