@@ -2,16 +2,20 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Chicken } from "./Chicken";
-import { MattyText } from "./Text";
+import { TextGroup } from "./TextGroup";
 
-export const Scene = () => {
+interface ISceneProps {
+  width: number;
+}
+export const Scene = ({ width }: ISceneProps) => {
   return (
     <Canvas dpr={[1, 2]}>
       <ambientLight intensity={0.7} />
+      <directionalLight color="white" position={[0, 0, 5]} intensity={2.5}/>
       <Suspense fallback={"Loading"}>
-        <Chicken />
+        <Chicken width={width} />
       </Suspense>
-      <MattyText />
+      <TextGroup />
     </Canvas>
   );
 };

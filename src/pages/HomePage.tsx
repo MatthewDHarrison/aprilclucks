@@ -8,7 +8,7 @@ import {
   MusicNote,
   YouTube,
   People,
-  LocalParking
+  LocalParking,
 } from "@mui/icons-material";
 
 const LINKS = [
@@ -50,40 +50,39 @@ export const HomePage = () => {
         alignItems="end"
         justifyContent="center"
         padding={{ b: 3 }}
-        backgroundImage={"/assets/bliss.jpg"}
-        backgroundSize="cover"
-        backgroundPosition="center"
       >
         <Box zIndex={1} position="absolute" height="100vh" width="100%">
-          <Scene />
+          <Scene width={width} />
         </Box>
-        <Box zIndex={3} display="inline-flex" sx={{ mb: 3 }}>
+        <Box zIndex={3} display="inline-flex" sx={{ mb: width < 800 ? 10 : 3 }}>
           {LINKS.map((link, index) => (
             <Box display="inline-flex" key={link.name}>
               <Box
                 display="inline-flex"
                 gap={1}
                 onClick={() => (window.location.href = link.href)}
+                alignItems="center"
               >
                 {link.icon}
 
                 {width > 800 && (
-                  <Link
-                    color="#fff"
-                    key={link.name}
-                    href={link.href}
-                    underline="hover"
-                    sx={{ display: "block" }}
-                  >
-                    {link.name}
-                  </Link>
+                  <Box sx={{ pt: 0.5 }}>
+                    <Link
+                      color="#fff"
+                      key={link.name}
+                      href={link.href}
+                      underline="hover"
+                    >
+                      {link.name}
+                    </Link>
+                  </Box>
                 )}
               </Box>
 
               {index < LINKS.length - 1 && (
                 <Box
                   height="100%"
-                  sx={{ width: "2px", mx: 3, bgcolor: "#fff" }}
+                  sx={{ width: "1px", mx: 3, bgcolor: "#fff" }}
                 />
               )}
             </Box>

@@ -13,11 +13,16 @@ const deg2Rad = (deg: number) => {
   return deg * (Math.PI / 180);
 };
 
-export const Chicken = () => {
+interface IChickenProps {
+  width: number;
+}
+
+export const Chicken = ({ width }: IChickenProps) => {
+  const cameraPos = width < 800 ? 5 : 3;
   const { camera } = useThree();
   const { scene } = useGLTF("/models/chicken.glb");
 
-  camera.position.set(0, 0, 3); // Set position like this
+  camera.position.set(0, 0, cameraPos); // Set position like this
   camera.rotateX(deg2Rad(180)); // Rotate like this
   camera.lookAt(new THREE.Vector3(0, 0, 0)); // Set look at coordinate like this
   camera.layers.enable(1);
@@ -36,7 +41,7 @@ export const Chicken = () => {
     const rotateY = Math.sin((t / Math.PI) * 2) * Math.PI;
     if (!chickenRef.current) return;
 
-    chickenRef.current.rotation.y = - t * 1.5;
+    chickenRef.current.rotation.y = -t * 1.5;
   });
 
   scene.setRotationFromEuler(new THREE.Euler(Math.PI / 2, 0, 0));
@@ -47,7 +52,7 @@ export const Chicken = () => {
     <group dispose={null}>
       <CameraControls minPolarAngle={0} maxPolarAngle={Math.PI / 1.6} />
 
-      <group ref={chickenRef} position={[0,0,-2]}>
+      <group ref={chickenRef} position={[0, 0, -2]}>
         <primitive object={scene} />
       </group>
     </group>
