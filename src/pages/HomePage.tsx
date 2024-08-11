@@ -13,27 +13,27 @@ import {
 
 const LINKS = [
   {
-    name: "Instagram",
+    name: "instagram",
     href: "https://www.instagram.com/aprilclucks/",
     icon: <Instagram />,
   },
   {
-    name: "YouTube",
+    name: "youtube",
     href: "https://www.youtube.com/@aprilclucks",
     icon: <YouTube />,
   },
   {
-    name: "Patreon",
+    name: "patreon",
     href: "https://www.patreon.com/videocameras",
     icon: <LocalParking />,
   },
   {
-    name: "Discord",
+    name: "discord",
     href: "https://discord.com/invite/5te896KGFa",
     icon: <People />,
   },
   {
-    name: "Email",
+    name: "email",
     href: "mailto:ezyvidya@gmail.com",
     icon: <Email />,
   },
