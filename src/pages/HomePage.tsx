@@ -4,12 +4,21 @@ import { Scene } from "../components/Scene";
 import {
   Instagram,
   Email,
-  Apple,
-  MusicNote,
   YouTube,
   People,
   LocalParking,
 } from "@mui/icons-material";
+import ReactGA from "react-ga";
+
+const handleClick = (link: string) => {
+  // Track a custom event
+  ReactGA.event({
+    category: "Link Click",
+    action: `Clicked on ${link}`,
+    label: link,
+  });
+  // Continue with your button's click handler
+};
 
 const LINKS = [
   {
@@ -60,7 +69,10 @@ export const HomePage = () => {
               <Box
                 display="inline-flex"
                 gap={1}
-                onClick={() => (window.location.href = link.href)}
+                onClick={() => {
+                  handleClick(link.name);
+                  window.location.href = link.href;
+                }}
                 alignItems="center"
               >
                 {link.icon}
@@ -72,6 +84,10 @@ export const HomePage = () => {
                       key={link.name}
                       href={link.href}
                       underline="hover"
+                      onClick={() => {
+                        handleClick(link.name);
+                        window.location.href = link.href;
+                      }}
                     >
                       {link.name}
                     </Link>
